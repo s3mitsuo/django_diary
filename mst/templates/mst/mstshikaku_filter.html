@@ -1,0 +1,124 @@
+{% extends "./_base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+	<div class="container">
+		<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">検索条件</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form id="filter" method="get">
+						<div class="modal-body">
+							{{filter.form|crispy}}
+						</div>
+					</form>
+					<div class="modal-footer">
+						<a class="btn btn-outline-secondary" data-dismiss="modal">戻る</a>
+						<button type="submit" class="btn btn-outline-secondary" form="filter">検索</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<a class="btn btn-secondary filtered" style="visibility:hidden" href="/?page=1">検索を解除</a>
+				<div class="float-right">
+					<a class="btn btn-outline-secondary" href="{% url 'mst:mstshikakucreate' %}">新規</a>
+					<a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<a class="btn btn-secondary filtered" style="visibility:hidden" href="/?page=1">検索を解除</a>
+				<div class="float-right">
+					<a class="btn btn-outline-secondary" href="{% url 'mst:mstshikakucreate' %}">新規</a>
+					<a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" >
+			<div class="col-12">
+				{% include "./_pagination.html" %}
+			</div>
+		</div>
+
+		<h1>{{mstbusyo_list.verbose_name}}_部署マスタ一覧</h1>
+
+		<div class="scroll-table-md" >
+			<table border="1" >
+				<thead>
+					<tr>
+                        <th scope="col">自動キー/th>
+                        <th scope="col">資格コード/th>
+                        <th scope="col">資格分類コード１/th>
+                        <th scope="col">資格分類コード２/th>
+                        <th scope="col">資格名称（正式）/th>
+                        <th scope="col">資格名称（社内）/th>
+                        <th scope="col">資格分類名称１/th>
+                        <th scope="col">主催/th>
+                        <th scope="col">対象職種区分/th>
+                        <th scope="col">資格ポイント/th>
+                        <th scope="col">技術ポイント/th>
+                        <th scope="col">技術フラグ/th>
+                        <th scope="col">資格分類コード/th>
+                        <th scope="col">有効年数/th>
+                        <th scope="col">受験料補助（コメント）/th>
+                        <th scope="col">祝金支払（コメント）/th>
+                        <th scope="col">削除フラグ/th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for item in objects_list %}
+					<tr>
+						<th scope="row">{{item.id}}</th>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.sikaku_cd }}</td>
+                            <td>{{ item.sikaku_bunrui_cd1 }}</td>
+                            <td>{{ item.sikaku_bunrui_cd2 }}</td>
+                            <td>{{ item.sikaku_nm }}</td>
+                            <td>{{ item.sikaku_nm_syanai }}</td>
+                            <td>{{ item.sikaku_bunrui_nm1 }}</td>
+                            <td>{{ item.syusai }}</td>
+                            <td>{{ item.sikaku_taisyo_kbn }}</td>
+                            <td>{{ item.point }}</td>
+                            <td>{{ item.gijyutu_point }}</td>
+                            <td>{{ item.gijyutu_flg }}</td>
+                            <td>{{ item.sikaku_bunrui_cd }}</td>
+                            <td>{{ item.yuko_nensu }}</td>
+                            <td>{{ item.hojyo_cmmt }}</td>
+                            <td>{{ item.siharai_cmmt }}</td>
+                            <td>{{ item.del_flg }}</td>
+							<td>
+								<a class="btn btn-outline-secondary " href="{% url 'mst:mstshikakudetail' item.pk %}">詳細</a>
+								<a class="btn btn-outline-secondary " href="{% url 'mst:mstshikakuupdate' item.pk %}">編集</a>
+								<a class="btn btn-outline-secondary " href="{% url 'mst:mstshikakudelete' item.pk %}">削除</a>
+							</td>
+					{% empty %}
+					<li class="list-group-item">
+						対象のデータがありません
+					</li>
+					{% endfor %}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="row" >
+			<div class="col-12">
+				<div class="float-right">
+					<a class="btn btn-outline-secondary" href="{% url 'mst:mstshikakucreate' %}">新規</a>
+					<a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

@@ -1,0 +1,20 @@
+	<!-- 固定検索画面 -->
+	{% load crispy_forms_tags %}
+	<h2>固定検索画面: include_query_fixed_screen.html</h2>
+	<div class="row">
+		<div class="col-12">
+			<a class="btn btn-secondary filtered" style="visibility:hidden" href="/?page=1">検索を解除</a>
+			<div class="float-right">
+				<a class="btn btn-outline-secondary" href="{% url 'mst:mstshikaku_create' %}">新規</a>
+			</div>
+		</div>
+
+	<form metho="get" class="form">
+		{% csrf_token %}</div>
+		{{ filter.form|crispy }}
+		<div class="modal-footer">
+		<button type="submit" class="btn btn-primary">検索</button>
+		</div>
+	</form>
+
+

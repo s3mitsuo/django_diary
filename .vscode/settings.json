@@ -1,0 +1,7 @@
+{
+    "files.eol": "\n",
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\Users\\s33mi\\source\\Django\\venv_app\\Scripts;${env:PATH}",
+    },
+    "python.pythonPath": "C:\\Users\\s33mi\\source\\Django\\venv_app\\Scripts\\python.exe"
+}

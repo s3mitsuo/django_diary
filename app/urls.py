@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# 2021/9/10
 
 urlpatterns = [
     path('admin/', admin.site.urls),
